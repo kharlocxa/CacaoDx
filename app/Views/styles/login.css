@@ -1,0 +1,64 @@
+.log-in {
+  background-color: #00000033;
+  display: grid;
+  justify-items: center;
+  align-items: start;
+  width: 100vw;
+  height: 100vh;
+}
+
+.log-in .div {
+  background-color: var(--system-colors-overlays-default, #fff);
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 100px;
+  text-align: center;
+}
+
+.log-in .text-wrapper-3 {
+  font-family: "Bai Jamjuree-Bold", Helvetica, sans-serif;
+  font-weight: 700;
+  color: #d34c4e;
+  font-size: 40px;
+  margin-bottom: 40px;
+}
+
+.input-field {
+  width: 100%;
+  height: 60px;
+  margin-bottom: 20px;
+  padding: 0 20px;
+  font-size: 18px;
+  border-radius: 17px;
+  border: none;
+  outline: none;
+  background-color: #29221d;
+  color: #fff;
+}
+
+.input-field::placeholder {
+  color: #d34c4e;
+  font-weight: 700;
+}
+
+.btn {
+  width: 100%;
+  height: 60px;
+  margin-top: 15px;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 17px;
+  border: none;
+  cursor: pointer;
+  background-color: #d34c4e;
+  color: #fff;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #b63c3e;
+}
