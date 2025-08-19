@@ -38,7 +38,7 @@
       </form>
 
       <!-- Signup button (redirects to register page) -->
-      <form action="<?= site_url('auth/register'); ?>" method="get">
+      <form action="<?= site_url('auth/registration'); ?>" method="get">
         <button class="btn secondary">Sign-Up</button>
       </form>
 

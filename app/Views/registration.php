@@ -33,30 +33,6 @@
               </div>
 
               <div class="row">
-                <div class="col-md-6 mb-4 d-flex align-items-center">
-                  <div class="form-outline w-100">
-                    <input type="date" name="birthday" class="form-control form-control-lg" id="birthdayDate" required />
-                    <label for="birthdayDate" class="form-label">Birthday</label>
-                  </div>
-                </div>
-                <div class="col-md-6 mb-4">
-                  <h6 class="mb-2 pb-1">Gender: </h6>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="femaleGender" value="female" required />
-                    <label class="form-check-label" for="femaleGender">Female</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="maleGender" value="male" />
-                    <label class="form-check-label" for="maleGender">Male</label>
-                  </div>
-                  <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="gender" id="otherGender" value="other" />
-                    <label class="form-check-label" for="otherGender">Other</label>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
                 <div class="col-md-6 mb-4 pb-2">
                   <div class="form-outline">
                     <input type="email" name="email" id="emailAddress" class="form-control form-control-lg" required />
