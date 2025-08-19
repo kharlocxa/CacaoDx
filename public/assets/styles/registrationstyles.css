@@ -1,29 +1,97 @@
+/* Background gradient */
+body, html {
+  height: 100%;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
 .gradient-custom {
-  /* fallback */
-  background: #f093fb;
-
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
-
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(
-    to bottom right,
-    rgba(240, 147, 251, 1),
-    rgba(245, 87, 108, 1)
-  );
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #f093fb, #f5576c);
 }
 
-.card-registration .form-select {
-  font-size: 1rem;
-  line-height: 2.15;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-}
-
+/* Card container */
 .card-registration {
+  background: #fff;
   border-radius: 15px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 600px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+/* Heading */
+.card-registration h3 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #333;
+}
+
+/* Form layout */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Form rows (two inputs per row) */
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-outline {
+  flex: 1;
+}
+
+/* Input styles */
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: 0.2s;
+}
+
+.form-control:focus {
+  border-color: #f093fb;
+  box-shadow: 0 0 5px rgba(240, 147, 251, 0.6);
+}
+
+/* Labels */
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* Button */
+button {
+  background: #f5576c;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #d94459;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .form-row {
+    flex-direction: column;
+  }
 }
