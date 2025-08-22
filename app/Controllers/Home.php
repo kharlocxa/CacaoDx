@@ -9,3 +9,11 @@ class Home extends BaseController
         return view('login');
     }
 }
+
+class Dashboard extends BaseController {
+    public function index() {
+        return view('dashboard');
+    }
+}
+
+
