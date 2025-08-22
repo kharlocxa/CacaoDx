@@ -17,4 +17,3 @@
   </section>
 </main>
 
-<?= $this->include('layouts/footer'); ?>
