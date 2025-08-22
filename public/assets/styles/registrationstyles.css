@@ -1,43 +1,72 @@
-/* Background gradient */
-body, html {
-  height: 100%;
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #d34c4e;
+  --primary-color-dark: #b63c3e;
+  --text-light: #ffffff;
+  --transition-speed: 0.3s;
+  --border-radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial, sans-serif;
+  padding: 0;
+  font-family: 'Inter', Helvetica, sans-serif;
 }
 
-.gradient-custom {
-  height: 100%;
+/* Body with background image + overlay */
+body {
+  height: 100vh;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start; /* left aligned */
   align-items: center;
-  background: linear-gradient(to bottom right, #f093fb, #f5576c);
+  padding-left: 8%; /* push form slightly inward */
+  background-image: url('/assets/pics/cacao_wallpaper.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative;
+  color: var(--text-light);
 }
 
-/* Card container */
-.card-registration {
-  background: #fff;
-  border-radius: 15px;
-  padding: 2rem;
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  max-width: 600px;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  height: 100%;
+  background-color: rgba(0,0,0,0.55); /* stronger overlay for readability */
+  z-index: 0;
+}
+
+/* Registration container (no white card) */
+.card-registration {
+  position: relative;
+  z-index: 1;
+  max-width: 500px;
+  width: 100%;
 }
 
 /* Heading */
 .card-registration h3 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #333;
+  font-weight: 700;
+  color: var(--primary-color);
+  font-size: 40px;
+  margin-bottom: 40px;
 }
 
 /* Form layout */
 form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.2rem;
 }
 
-/* Form rows (two inputs per row) */
+/* Form rows */
 .form-row {
   display: flex;
   gap: 1rem;
@@ -47,49 +76,68 @@ form {
   flex: 1;
 }
 
-/* Input styles */
+/* Input styles (glassmorphism) */
 .form-control {
   width: 100%;
-  padding: 12px 15px;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  padding: 14px 16px;
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255,255,255,0.3);
   font-size: 1rem;
   outline: none;
-  transition: 0.2s;
+  background-color: rgba(255,255,255,0.1);
+  color: var(--text-light);
+  backdrop-filter: blur(6px);
+  transition: border-color var(--transition-speed), background-color var(--transition-speed);
+}
+
+.form-control::placeholder {
+  color: rgba(255,255,255,0.7);
+  font-weight: 400;
 }
 
 .form-control:focus {
-  border-color: #f093fb;
-  box-shadow: 0 0 5px rgba(240, 147, 251, 0.6);
+  border-color: var(--primary-color);
+  background-color: rgba(255,255,255,0.2);
 }
 
-/* Labels */
+/* Labels (lighter for minimal look) */
 label {
   display: block;
   margin-bottom: 6px;
-  font-weight: bold;
+  font-weight: 500;
   font-size: 0.9rem;
-  color: #444;
+  color: rgba(255,255,255,0.85);
 }
 
-/* Button */
+/* Buttons */
 button {
-  background: #f5576c;
-  border: none;
+  width: 100%;
   padding: 14px;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
+  border: none;
   font-size: 1rem;
-  font-weight: bold;
-  color: white;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s;
+  background-color: var(--primary-color);
+  color: var(--text-light);
+  transition: background-color var(--transition-speed), transform var(--transition-speed);
 }
 
 button:hover {
-  background: #d94459;
+  background-color: var(--primary-color-dark);
+  transform: translateY(-2px);
 }
 
-/* Responsive for mobile */
+button.secondary {
+  background-color: rgba(255,255,255,0.15);
+  color: var(--text-light);
+}
+
+button.secondary:hover {
+  background-color: rgba(255,255,255,0.3);
+}
+
+/* Responsive */
 @media (max-width: 600px) {
   .form-row {
     flex-direction: column;
