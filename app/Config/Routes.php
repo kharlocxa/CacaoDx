@@ -11,3 +11,4 @@ $routes->get('/auth/registration', 'Auth::registration');
 $routes->post('/auth/create', 'Auth::create');
 $routes->post('/auth/authenticate', 'Auth::authenticate');
 $routes->get('/logout', 'Auth::logout');
+$routes->get('dashboard', 'Dashboard::index');

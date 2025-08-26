@@ -10,17 +10,17 @@
     <li class="<?= ($current_page == 'dashboard') ? 'active' : '' ?>">
       <a href="<?= site_url('dashboard'); ?>">Home</a>
     </li>
-    <li class="<?= ($current_page == 'users') ? 'active' : '' ?>">
-      <a href="<?= site_url('users'); ?>">Images</a>
+    <li class="<?= ($current_page == 'images') ? 'active' : '' ?>">
+      <a href="<?= site_url('images'); ?>">Images</a>
     </li>
-    <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
-      <a href="<?= site_url('logs'); ?>">Users</a>
+    <li class="<?= ($current_page == 'users') ? 'active' : '' ?>">
+      <a href="<?= site_url('users'); ?>">Users</a>
     </li>
     <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
       <a href="<?= site_url('logs'); ?>">Logs</a>
     </li>
-    <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
-      <a href="<?= site_url('logs'); ?>">Disease</a>
+    <li class="<?= ($current_page == 'disease') ? 'active' : '' ?>">
+      <a href="<?= site_url('disease'); ?>">Disease</a>
     </li>
   </ul>
 
