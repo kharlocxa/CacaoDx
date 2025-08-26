@@ -1,0 +1,72 @@
+.listed-users {
+  background: #29221d;
+  border-radius: 20px;
+  padding: 20px;
+  color: white;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+/* Title */
+.listed-users h1 {
+  margin: 0 0 20px 0;
+  color: #d34c4e;
+  font-size: 1.8rem;
+}
+
+/* Header row */
+.header-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 2fr 2fr 1fr;
+  padding: 10px;
+  border-bottom: 2px solid #d34c4e;
+  font-weight: bold;
+  color: #d34c4e;
+}
+
+/* Data rows */
+.navbar-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 2fr 2fr 2fr 1fr;
+  padding: 12px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  align-items: center;
+}
+
+/* Columns */
+.col {
+  padding: 4px 6px;
+  word-break: break-word;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.btn-edit {
+  background: #d34c4e;
+  color: white;
+  transition: background 0.3s ease;
+}
+
+.btn-edit:hover {
+  background: #a73234;
+}
+
+/* Make it responsive */
+@media (max-width: 768px) {
+  .header-row, .navbar-row {
+    grid-template-columns: 1fr;
+    text-align: left;
+  }
+  .col {
+    padding: 8px 0;
+  }
+}
