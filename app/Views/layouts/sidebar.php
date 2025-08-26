@@ -11,10 +11,16 @@
       <a href="<?= site_url('dashboard'); ?>">Home</a>
     </li>
     <li class="<?= ($current_page == 'users') ? 'active' : '' ?>">
-      <a href="<?= site_url('users'); ?>">Users</a>
+      <a href="<?= site_url('users'); ?>">Images</a>
+    </li>
+    <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
+      <a href="<?= site_url('logs'); ?>">Users</a>
     </li>
     <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
       <a href="<?= site_url('logs'); ?>">Logs</a>
+    </li>
+    <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
+      <a href="<?= site_url('logs'); ?>">Disease</a>
     </li>
   </ul>
 
