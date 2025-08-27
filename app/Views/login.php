@@ -12,7 +12,7 @@
       <h1 class="text-wrapper-3">CacaoDx</h1>
 
       <!-- Login form -->
-      <form action="<?= site_url('auth/authenticate'); ?>" method="post">
+      <form action="<?= site_url('login'); ?>" method="post">
 
         <!-- Email input -->
         <input
@@ -38,8 +38,9 @@
       </form>
 
       <!-- Signup button (redirects to register page) -->
-      <form action="<?= site_url('auth/registration'); ?>" method="get">
-        <button class="btn secondary">Sign-Up</button>
+      <!-- <form action="<?= site_url('/register'); ?>" method="get"> -->
+      <form action="<?= site_url('/register'); ?>" method="get">
+      <button class="btn secondary">Sign-Up</button>
       </form>
 
     </div>
