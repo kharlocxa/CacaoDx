@@ -6,20 +6,27 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table = 'users';   // name of your DB table
-    protected $primaryKey = 'id'; // primary key column
+    protected $table = 'users';   // users table
+    protected $primaryKey = 'id'; // PK
 
     protected $allowedFields = [
         'first_name',
         'last_name',
         'email',
-        'password', 
+        'password',
+        'user_type_id',
         'contact_number',
-        'password'
+        'registered_at'
     ];
 
-    // Optional: auto timestamps if you have created_at / updated_at fields
-    protected $useTimestamps = true;
-    protected $createdField  = 'created_at';
-    protected $updatedField  = 'updated_at';
+    protected $useTimestamps = false; // since you are using registered_at, not created_at/updated_at
+
+    // Optionally, you can auto-hash password here
+    protected function beforeInsert(array $data)
+    {
+        if (isset($data['data']['password'])) {
+            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+        }
+        return $data;
+    }
 }

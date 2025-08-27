@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="<?= base_url('assets/styles/dashboardstyles.css'); ?>">
+</head>
+<body>
+
 <div class="container">
 
   <!-- Sidebar -->
@@ -6,7 +16,7 @@
   <!-- Main Content -->
   <main class="main-content">
     <header class="header">
-      <h1>Dashboard</h1>
+      <h1>Welcome, <?= esc($userName) ?> 👋</h1>
       <div class="icons">
         <span>🔍</span>
         <span>🔔</span>
@@ -17,15 +27,15 @@
     <section class="stats">
       <div class="card">
         <h3>Total Users</h3>
-        <p>15</p>
+        <p><?= esc($totalUsers) ?></p>
       </div>
       <div class="card">
         <h3>Total Diagnostics</h3>
-        <p>15</p>
+        <p><?= esc($totalDiagnosis) ?></p>
       </div>
       <div class="card">
         <h3>Total Diseases</h3>
-        <p>15</p>
+        <p><?= esc($totalDiseases) ?></p>
       </div>
     </section>
 
@@ -45,10 +55,10 @@
       <div class="new-users">
         <h3>New Users</h3>
         <ul>
-          <li><img src="https://i.pravatar.cc/40?img=1" class="profile-pic"> Roselle Ehrman <span>Bacong</span></li>
-          <li><img src="https://i.pravatar.cc/40?img=2" class="profile-pic"> Jone Smith <span>Tanjay</span></li>
-          <li><img src="https://i.pravatar.cc/40?img=3" class="profile-pic"> Darron Handler <span>Bais</span></li>
-          <li><img src="https://i.pravatar.cc/40?img=4" class="profile-pic"> Leatrice Kulik <span>Bais</span></li>
+          <li><img src="https://i.pravatar.cc/40?img=1"> Roselle Ehrman <span>Bacong</span></li>
+          <li><img src="https://i.pravatar.cc/40?img=2"> Jone Smith <span>Tanjay</span></li>
+          <li><img src="https://i.pravatar.cc/40?img=3"> Darron Handler <span>Bais</span></li>
+          <li><img src="https://i.pravatar.cc/40?img=4"> Leatrice Kulik <span>Bais</span></li>
         </ul>
       </div>
     </section>
@@ -76,3 +86,6 @@
     }
   });
 </script>
+
+</body>
+</html>

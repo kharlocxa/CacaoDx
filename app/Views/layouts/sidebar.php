@@ -1,9 +1,14 @@
-<?php $current_page = service('uri')->getSegment(1); ?>
+<?php $current_page = service('uri')->getSegment(1); 
+
+$session = session();
+$fullName = session()->get('first_name') . ' ' . session()->get('last_name');
+
+?>
 
 <nav class="sidebar">
   <div class="profile">
-    <img src="https://via.placeholder.com/40" alt="User" class="profile-pic">
-    <span class="username">Aiden Max</span>
+    <img src="https://via.placeholder.com/40" alt="" class="profile-pic">
+    <span class="username"><?= esc($fullName) ?></span>
   </div>
 
   <ul class="menu">
@@ -24,5 +29,5 @@
     </li>
   </ul>
 
-  <button class="logout">Logout</button>
+  <a href="<?= site_url('logout'); ?>" class="logout">Logout</a>
 </nav>

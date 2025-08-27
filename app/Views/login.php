@@ -12,7 +12,7 @@
       <h1 class="text-wrapper-3">CacaoDx</h1>
 
       <!-- Login form -->
-      <form action="<?= base_url('dashboard.php'); ?>" method="get">
+      <form action="<?= site_url('auth/authenticate'); ?>" method="post">
 
         <!-- Email input -->
         <input
