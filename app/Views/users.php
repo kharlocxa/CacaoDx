@@ -1,4 +1,12 @@
-<?= $this->include('layouts/header', ['title' => 'Dashboard']) ?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="<?= base_url('assets/styles/userstyles.css'); ?>">
+</head>
+<body>
 <?= $this->include('layouts/sidebar') ?>
 
 <div class="listed-users">
@@ -8,7 +16,7 @@
     <div class="col name">Name</div>
     <div class="col id">ID</div>
     <div class="col email">Email</div>
-    <div class="col municipality">Municipality</div>
+    <div class="col municipality">User Type</div>
     <div class="col phone">Phone</div>
     <div class="col actions">Actions</div>
   </div>
@@ -17,41 +25,28 @@
     <?php foreach ($users as $i => $user): ?>
       <div class="navbar-row">
         <div class="col name"><?= esc($user['first_name'] . ' ' . ($user['last_name'] ?? '')) ?></div>
-        <div class="col id"><?= esc($user['id'] ?? ($i + 1)) ?></div>
+        <div class="col id"><?= esc($user['id']) ?></div>
         <div class="col email"><?= esc($user['email'] ?? '') ?></div>
-        <div class="col municipality"><?= esc($user['municipality'] ?? '') ?></div>
-        <div class="col phone"><?= esc($user['phone'] ?? '') ?></div>
+        <div class="col municipality"><?= esc($user['user_type_id'] ?? '') ?></div>
+        <div class="col phone"><?= esc($user['contact_number'] ?? '') ?></div>
         <div class="col actions">
-          <a href="<?= site_url('users/edit/' . ($user['id'] ?? '')) ?>" class="btn btn-edit">Edit</a>
+          <a href="<?= site_url('users/edit/' . $user['id']) ?>" class="btn btn-edit">Edit</a>
         </div>
       </div>
     <?php endforeach; ?>
+
+    <!-- Pagination Links -->
+    <div class="pagination">
+      <?= $pager->links() ?>
+    </div>
+
   <?php else: ?>
     <div class="navbar-row">
-      <div class="col name">Roselle Ehrman</div>
-      <div class="col id">1</div>
-      <div class="col email">roselle@gmail.com</div>
-      <div class="col municipality">Tanjay</div>
-      <div class="col phone">1254785</div>
-      <div class="col actions"><a href="#" class="btn btn-edit">Edit</a></div>
-    </div>
-
-    <div class="navbar-row">
-      <div class="col name">Andriana</div>
-      <div class="col id">2</div>
-      <div class="col email">andriana@gmail.com</div>
-      <div class="col municipality">Bacong</div>
-      <div class="col phone">1285685</div>
-      <div class="col actions"><a href="#" class="btn btn-edit">Edit</a></div>
-    </div>
-
-    <div class="navbar-row">
-      <div class="col name">Vacinzo</div>
-      <div class="col id">3</div>
-      <div class="col email">vacinzo@gmail.com</div>
-      <div class="col municipality">Bais</div>
-      <div class="col phone">1254795</div>
-      <div class="col actions"><a href="#" class="btn btn-edit">Edit</a></div>
+      <div class="col" colspan="6" style="text-align:center;">
+        No users found.
+      </div>
     </div>
   <?php endif; ?>
 </div>
+</body>
+</html>

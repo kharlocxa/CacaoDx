@@ -24,8 +24,14 @@ $fullName = session()->get('first_name') . ' ' . session()->get('last_name');
     <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
       <a href="<?= site_url('logs'); ?>">Logs</a>
     </li>
+    <li class="<?= ($current_page == 'calendar') ? 'active' : '' ?>">
+      <a href="<?= site_url('calendar'); ?>">Calendar</a>
+    </li>
     <li class="<?= ($current_page == 'disease') ? 'active' : '' ?>">
       <a href="<?= site_url('disease'); ?>">Disease</a>
+    </li>
+    <li class="<?= ($current_page == 'diagnosis') ? 'active' : '' ?>">
+      <a href="<?= site_url('diagnosis'); ?>">Diagnosis</a>
     </li>
   </ul>
 

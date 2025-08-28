@@ -20,6 +20,8 @@ $routes->get('/logout', 'Auth::logout');          // logout
 // Protected routes
 $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Dashboard::index');
+    $routes->get('users/edit/(:num)', 'Users::edit/$1');
+    $routes->post('users/update/(:num)', 'Users::update/$1');
     $routes->get('users', 'Users::index');
     $routes->get('logs', 'Logs::index');
     $routes->get('disease', 'Disease::index');
