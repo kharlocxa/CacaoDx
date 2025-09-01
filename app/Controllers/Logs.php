@@ -12,6 +12,6 @@ class Logs extends BaseController
         $data['logs'] = $logModel->getLogsWithUsersPaginated(10);
         $data['pager'] = $logModel->pager;
         
-        return view('logs', $data);
+        return view('activity_log', $data);
     }
 }

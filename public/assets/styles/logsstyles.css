@@ -8,6 +8,21 @@
   color: white;
 }
 
+.sidebar {
+  position: relative; /* no longer fixed flush to the side */
+  width: 250px;
+  background: rgba(42, 31, 26, 0.95); /* semi-transparent */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Floating effect */
+  border-radius: 20px;
+  margin-right: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
 .main-content {
   flex: 1;
   max-width: 1000px;

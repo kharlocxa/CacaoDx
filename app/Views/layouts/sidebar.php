@@ -22,7 +22,7 @@ $fullName = session()->get('first_name') . ' ' . session()->get('last_name');
       <a href="<?= site_url('users'); ?>">Users</a>
     </li>
     <li class="<?= ($current_page == 'logs') ? 'active' : '' ?>">
-      <a href="<?= site_url('logs'); ?>">Logs</a>
+      <a href="<?= site_url('activity_log'); ?>">Logs</a>
     </li>
     <li class="<?= ($current_page == 'calendar') ? 'active' : '' ?>">
       <a href="<?= site_url('calendar'); ?>">Calendar</a>
