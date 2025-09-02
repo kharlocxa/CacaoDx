@@ -8,5 +8,5 @@ class DiseaseModel extends Model
 {
     protected $table = 'diseases';
     protected $primaryKey = 'id';
-    protected $allowedFields = ['name', 'description', 'created_at'];
+    protected $allowedFields = ['name', 'type', 'plant_part', 'cause'];
 }

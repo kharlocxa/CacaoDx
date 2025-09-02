@@ -1,0 +1,114 @@
+/* Container */
+.diagnosis-container {
+  width: 90%;
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Heading */
+.diagnosis-container h1 {
+  text-align: center;
+  font-size: 28px;
+  margin-bottom: 25px;
+  color: #2c3e50;
+  font-weight: 600;
+}
+
+/* Table */
+.diagnosis-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+/* Table Header */
+.diagnosis-table thead {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.diagnosis-table thead th {
+  padding: 14px 12px;
+  text-align: left;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Table Rows */
+.diagnosis-table tbody tr {
+  border-bottom: 1px solid #ddd;
+  transition: background 0.2s ease;
+}
+
+.diagnosis-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.diagnosis-table tbody tr:hover {
+  background: #eafaf1;
+}
+
+/* Table Cells */
+.diagnosis-table td {
+  padding: 12px;
+  color: #2c3e50;
+}
+
+/* Empty state */
+.diagnosis-table td[colspan] {
+  font-style: italic;
+  color: #888;
+  padding: 20px;
+}
+
+/* Pagination */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.pagination a,
+.pagination strong {
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 0 4px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.pagination a {
+  background: #f0f0f0;
+  color: #2c3e50;
+}
+
+.pagination a:hover {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.pagination strong {
+  background: #4CAF50;
+  color: #fff;
+}
+
+.sidebar {
+  position: relative; /* no longer fixed flush to the side */
+  width: 250px;
+  background: rgba(42, 31, 26, 0.95); /* semi-transparent */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* Floating effect */
+  border-radius: 20px;
+  margin-right: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}

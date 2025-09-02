@@ -1,0 +1,136 @@
+/* Page background */
+body {
+  margin: 0;
+  font-family: "Inter", sans-serif;
+  display: flex;
+  height: 100vh;
+  background: linear-gradient(to bottom, #37716a, #d34c4e); /* green to red gradient */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Sidebar (floating card on the left) */
+.sidebar {
+  position: relative;
+  width: 220px;
+  background: rgba(42, 31, 26, 0.95);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  margin-right: 25px;
+  color: #fff;
+}
+
+/* Main Upload Section */
+.add-user {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-image {
+  width: 600px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+.text-wrapper {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* Upload Box */
+.frame {
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  text-align: center;
+}
+
+.frame-wrapper {
+  border: 2px dashed #d34c4e;
+  border-radius: 12px;
+  padding: 40px 20px;
+  margin: 15px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.frame-wrapper:hover {
+  border-color: #37716a;
+  background-color: rgba(55, 111, 106, 0.05);
+}
+
+.icon-upload {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.drop-your-image-here {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.text-wrapper-2 {
+  color: #d34c4e;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.text-wrapper-3 {
+  font-size: 12px;
+  color: #888;
+  margin-top: 8px;
+}
+
+/* Buttons */
+.button-large,
+.large-button-outline {
+  width: 120px;
+  height: 38px;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-block;
+  margin: 10px 5px 0;
+}
+
+.button-large {
+  background: #d34c4e;
+  border: none;
+  color: #fff;
+}
+
+.button-large:hover {
+  background: #b83b3d;
+}
+
+.large-button-outline {
+  border: 1px solid #d34c4e;
+  background: transparent;
+  color: #d34c4e;
+}
+
+.large-button-outline:hover {
+  background: #d34c4e;
+  color: #fff;
+}
+
+/* Flash Messages */
+.success-msg {
+  color: green;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.error-msg {
+  color: red;
+  font-size: 14px;
+  margin-bottom: 10px;
+}

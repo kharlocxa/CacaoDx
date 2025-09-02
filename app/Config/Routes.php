@@ -20,11 +20,23 @@ $routes->get('/logout', 'Auth::logout');          // logout
 // Protected routes
 $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Dashboard::index');
+    
+    // Users
     $routes->get('users/edit/(:num)', 'Users::edit/$1');
     $routes->post('users/update/(:num)', 'Users::update/$1');
     $routes->get('users', 'Users::index');
+    
+    // Logs
     $routes->get('activity_log', 'Logs::index');
-    $routes->get('disease', 'Disease::index');
-    $routes->get('images', 'Images::index');
-    $routes->post('images/upload', 'Images::upload');
+    
+    // Disease
+    $routes->get('/disease', 'Disease::index');
+
+    // Images
+    $routes->get('images', 'Images::index');          // Upload form page
+    $routes->post('images/upload', 'Images::upload'); // Handle upload
+    $routes->get('images/list', 'Images::list');      // Show uploaded list
+
+    // Diagnosis (View Only)
+    $routes->get('diagnosis', 'Diagnosis::index');           // list all
 });

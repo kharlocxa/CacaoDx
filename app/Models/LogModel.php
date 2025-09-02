@@ -10,7 +10,7 @@ class LogModel extends Model
     protected $primaryKey = 'id';
     protected $allowedFields = ['user_id', 'activity', 'log_date'];
 
-    public function getLogsWithUsersPaginated($perPage = 7)
+    public function getLogsWithUsersPaginated($perPage = 6)
     {
         return $this->select('activity_log.*, users.first_name, users.last_name')
                     ->join('users', 'users.id = activity_log.user_id', 'left')

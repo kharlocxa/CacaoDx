@@ -30,6 +30,13 @@
             <div class="col"><?= date('F j, Y', strtotime($log['log_date'])) ?></div>
         </div>
         <?php endforeach; ?>
+
+        <!-- Pagination Links -->
+    <div class="pagination">
+      <?= $pager->links() ?>
+    </div>
+
+    
     <?php else: ?>
         <div class="no-logs">No logs found.</div>
     <?php endif; ?>
