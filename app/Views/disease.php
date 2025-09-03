@@ -14,6 +14,8 @@
   <div class="diseases-list">
     <div class="header">
       <h2>Diseases</h2>
+      <!-- ✅ Keep only one button here -->
+      <button class="add-btn" onclick="openModal()">+ Add Disease</button>
     </div>
 
     <div class="table">
@@ -48,6 +50,54 @@
       <?php endif; ?>
     </div>
   </div>
+
+  <!-- ✅ Modal (only one copy) -->
+  <div id="diseaseModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Add New Disease</h3>
+      <form action="<?= site_url('disease/store') ?>" method="post">
+        <label for="name">Disease Name</label>
+        <input type="text" name="name" required />
+
+        <label for="type">Type</label>
+        <select name="type" required>
+          <option value="">-- Select Type --</option>
+          <option value="Fungal">Fungal</option>
+          <option value="Bacterial">Bacterial</option>
+          <option value="Viral">Viral</option>
+        </select>
+
+        <label for="cause">Cause</label>
+        <input type="text" name="cause" required />
+
+        <label for="plant_part">Plant Part</label>
+        <select name="plant_part" required>
+          <option value="">-- Select Plant Part --</option>
+          <option value="Leaf">Leaf</option>
+          <option value="Stem">Stem</option>
+          <option value="Pod">Pod</option>
+        </select>
+
+        <button type="submit" class="button-large">Save</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function openModal() {
+      document.getElementById("diseaseModal").style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById("diseaseModal").style.display = "none";
+    }
+    window.onclick = function(event) {
+      let modal = document.getElementById("diseaseModal");
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  </script>
 
 </body>
 </html>

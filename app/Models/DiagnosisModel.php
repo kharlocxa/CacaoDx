@@ -19,13 +19,14 @@ class DiagnosisModel extends Model
     ];
 
     // Custom query with joins
-    public function getDiagnosisWithDetails($perPage = 6)
+        public function getDiagnosisWithDetails($perPage = 6)
     {
         return $this->select('
                 diagnosis.id,
-                users.name as user_name,
+                CONCAT(users.first_name, " ", users.last_name) as user_name,
                 diseases.name as disease_name,
-                plant_parts.name as plant_part,
+                treatments.name as treatment,        -- ✅ add treatment
+                plant_part.part as plant_part,
                 diagnosis.image_path,
                 diagnosis.confidence,
                 diagnosis.notes,
@@ -33,7 +34,8 @@ class DiagnosisModel extends Model
             ')
             ->join('users', 'users.id = diagnosis.user_id')
             ->join('diseases', 'diseases.id = diagnosis.disease_id')
-            ->join('plant_parts', 'plant_parts.id = diagnosis.plant_part_id')
+            ->join('treatments', 'treatments.id = diagnosis.treatment_id')  // ✅ join treatments
+            ->join('plant_part', 'plant_part.id = diagnosis.plant_part_id')
             ->paginate($perPage);
     }
 }

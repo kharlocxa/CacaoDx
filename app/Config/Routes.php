@@ -31,6 +31,8 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     
     // Disease
     $routes->get('/disease', 'Disease::index');
+    $routes->post('disease/store', 'Disease::store'); // 👈 handles form submission
+
 
     // Images
     $routes->get('images', 'Images::index');          // Upload form page
