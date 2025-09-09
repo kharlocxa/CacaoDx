@@ -17,6 +17,11 @@ $routes->get('/login', 'Auth::login');             // show form
 $routes->post('/login', 'Auth::authenticate');    // submit login
 $routes->get('/logout', 'Auth::logout');          // logout
 
+// Mobile API routes
+$routes->post('api/login', 'Api\Auth::login');
+$routes->post('api/register', 'Api\Auth::register');
+
+
 // Protected routes
 $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Dashboard::index');

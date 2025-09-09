@@ -113,3 +113,20 @@ body::before {
 .btn.secondary:hover {
   background-color: rgba(255,255,255,0.3);
 }
+
+    .alert {
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .alert-danger {
+      background-color: #f8d7da;
+      color: #842029;
+      border: 1px solid #f5c2c7;
+    }
+    .alert-success {
+      background-color: #d1e7dd;
+      color: #0f5132;
+      border: 1px solid #badbcc;
+    }

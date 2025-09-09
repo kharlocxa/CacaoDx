@@ -11,6 +11,19 @@
     <div class="div">
       <h1 class="text-wrapper-3">CacaoDx</h1>
 
+      <!-- ✅ Flash Messages -->
+      <?php if (session()->getFlashdata('error')): ?>
+        <div class="alert alert-danger">
+          <?= session()->getFlashdata('error') ?>
+        </div>
+      <?php endif; ?>
+
+      <?php if (session()->getFlashdata('success')): ?>
+        <div class="alert alert-success">
+          <?= session()->getFlashdata('success') ?>
+        </div>
+      <?php endif; ?>
+
       <!-- Login form -->
       <form action="<?= site_url('login'); ?>" method="post">
 
@@ -37,10 +50,9 @@
 
       </form>
 
-      <!-- Signup button (redirects to register page) -->
-      <!-- <form action="<?= site_url('/register'); ?>" method="get"> -->
-      <form action="<?= site_url('/register'); ?>" method="get">
-      <button class="btn secondary">Sign-Up</button>
+      <!-- Signup button -->
+      <form action="<?= site_url('/registration'); ?>" method="get">
+        <button class="btn secondary">Sign-Up</button>
       </form>
 
     </div>
