@@ -16,9 +16,11 @@ class UserModel extends Model
         'password',
         'user_type_id',
         'contact_number',
-        'registered_at'
+        'registered_at',
+        'role',
+        'status'
     ];
-
+    
     protected $useTimestamps = false; // since you are using registered_at, not created_at/updated_at
 
     // Optionally, you can auto-hash password here

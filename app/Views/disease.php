@@ -2,56 +2,76 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard</title>
+  <title>Diseases</title>
   <link rel="stylesheet" href="<?= base_url('assets/styles/diseasestyles.css'); ?>">
 </head>
 <body>
-
-<?= $this->include('layouts/sidebar') ?>
-
-<?php if (isset($content) && $content === 'diseases'): ?>
-  <div class="diseases-list">
-    <div class="header">
-      <h2>Diseases</h2>
-      <!-- ✅ Keep only one button here -->
-      <button class="add-btn" onclick="openModal()">+ Add Disease</button>
-    </div>
-
-    <div class="table">
-      <div class="table-header">
-        <div class="id">ID</div>
-        <div class="name">Name</div>
-        <div class="type">Type</div>
-        <div class="cause">Cause</div>
-        <div class="plant-part">Plant Part</div>
-      </div>
-
-      <?php foreach ($diseases as $disease): ?>
-        <div class="table-row">
-          <div class="id"><?= esc($disease['id']) ?></div>
-          <div class="name"><?= esc($disease['name']) ?></div>
-          <div class="plant-part"><?= esc($disease['plant_part_id']) ?></div>
-          <div class="type"><?= esc($disease['type']) ?></div>
-          <div class="cause"><?= esc($disease['cause']) ?></div>
-        </div>
-      <?php endforeach; ?>
-
-      <?php if (isset($pager)) : ?>
-        <div class="pagination">
-          <?= $pager->links() ?>
-        </div>
-      <?php endif; ?>
-
-      <?php else: ?>
-        <div class="table-row">
-          <div class="no-data">No diseases found.</div>
-        </div>
-      <?php endif; ?>
-    </div>
+  <!-- Page Title (like images.php) -->
+  <div class="title-page">
+    <h1 class="page-title">Diseases</h1>
   </div>
 
-  <!-- ✅ Modal (only one copy) -->
+  <div class="container">
+    <!-- Sidebar -->
+    <?= $this->include('layouts/sidebar') ?>
+
+    <!-- Main content -->
+    <div class="main-content">
+
+      <div class="listed-users">
+        <!-- Header: title + add button -->
+        <div class="header">
+          <h2>Disease List</h2>
+          <button class="add-btn" onclick="openModal()">+ Add Disease</button>
+        </div>
+
+        <!-- Flash Messages -->
+        <?php if(session()->getFlashdata('success')): ?>
+          <p class="success-msg"><?= session()->getFlashdata('success') ?></p>
+        <?php endif; ?>
+        <?php if(session()->getFlashdata('error')): ?>
+          <p class="error-msg"><?= session()->getFlashdata('error') ?></p>
+        <?php endif; ?>
+
+        <!-- Table -->
+        <div class="table">
+          <div class="table-header">
+            <div class="id">ID</div>
+            <div class="name">Name</div>
+            <div class="type">Type</div>
+            <div class="cause">Cause</div>
+            <div class="plant-part">Plant Part</div>
+          </div>
+
+          <?php if (!empty($diseases) && is_array($diseases)): ?>
+            <?php foreach ($diseases as $disease): ?>
+              <div class="table-row">
+                <div class="id"><?= esc($disease['id']) ?></div>
+                <div class="name"><?= esc($disease['name']) ?></div>
+                <div class="type"><?= esc($disease['type']) ?></div>
+                <div class="cause"><?= esc($disease['cause']) ?></div>
+                <div class="plant-part"><?= esc($disease['plant_part_id']) ?></div>
+              </div>
+            <?php endforeach; ?>
+          <?php else: ?>
+            <div class="table-row">
+              <div class="no-data">No diseases found.</div>
+            </div>
+          <?php endif; ?>
+
+          <!-- Pagination -->
+          <?php if (isset($pager)) : ?>
+            <div class="pagination">
+              <?= $pager->links() ?>
+            </div>
+          <?php endif; ?>
+        </div>
+      </div>
+
+    </div> <!-- .main-content -->
+  </div> <!-- .container -->
+
+  <!-- Modal -->
   <div id="diseaseModal" class="modal">
     <div class="modal-content">
       <span class="close" onclick="closeModal()">&times;</span>
@@ -93,11 +113,8 @@
     }
     window.onclick = function(event) {
       let modal = document.getElementById("diseaseModal");
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
+      if (event.target == modal) modal.style.display = "none";
     }
   </script>
-
 </body>
 </html>

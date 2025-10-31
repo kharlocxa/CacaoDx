@@ -14,7 +14,7 @@ class LogModel extends Model
     {
         return $this->select('activity_log.*, users.first_name, users.last_name')
                     ->join('users', 'users.id = activity_log.user_id', 'left')
-                    ->orderBy('activity_log.log_date', 'DESC')
+                    ->orderBy('activity_log.log_date', 'ASC')
                     ->paginate($perPage);
     }
 }
