@@ -16,7 +16,6 @@
           <th>ID</th>
           <th>User</th>
           <th>Disease</th>
-          <th>Treatment</th>
           <th>Plant Part</th>
           <th>Notes</th>
           <th>Diagnosis Date</th>
@@ -29,7 +28,6 @@
               <td><?= esc($row['id']) ?></td>
               <td><?= esc($row['user_name']) ?></td>
               <td><?= esc($row['disease_name']) ?></td>
-              <td><?= esc($row['treatment']) ?></td>
               <td><?= esc($row['plant_part']) ?></td>
               <td><?= esc($row['notes']) ?></td>
               <td><?= esc($row['diagnosis_date']) ?></td>

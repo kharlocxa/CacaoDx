@@ -18,17 +18,18 @@ class UserModel extends Model
         'contact_number',
         'registered_at',
         'role',
-        'status'
+        'status',
+        'farm_location'
     ];
     
     protected $useTimestamps = false; // since you are using registered_at, not created_at/updated_at
 
     // Optionally, you can auto-hash password here
-    protected function beforeInsert(array $data)
-    {
-        if (isset($data['data']['password'])) {
-            $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
-        }
-        return $data;
-    }
+    // protected function beforeInsert(array $data)
+    // {
+    //     if (isset($data['data']['password'])) {
+    //         $data['data']['password'] = password_hash($data['data']['password'], PASSWORD_DEFAULT);
+    //     }
+    //     return $data;
+    // }
 }

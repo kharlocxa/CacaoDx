@@ -19,7 +19,8 @@ class Registration extends BaseController
             'first_name'     => $this->request->getPost('first_name'),
             'last_name'      => $this->request->getPost('last_name'),
             'email'          => $this->request->getPost('email'),
-            'password'       => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
+            'password'       => $this->request->getPost('password'), // NOT HASHED - FOR TESTING ONLY
+            // 'password'       => password_hash($this->request->getPost('password'), PASSWORD_DEFAULT),
             'user_type_id'   => 1, // Force new users to Admin
             'contact_number' => $this->request->getPost('contact_number'),
             'registered_at'  => date('Y-m-d H:i:s')

@@ -9,8 +9,8 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 // Registration
-$routes->get('/register', 'Registration::index');   // show form
-$routes->post('/register', 'Registration::store'); // handle submission
+$routes->get('/registration', 'Registration::index');   // show form
+$routes->post('/registration', 'Registration::store'); // handle submission
 
 // Login / Auth
 $routes->get('/login', 'Auth::login');             // show form
@@ -20,6 +20,14 @@ $routes->get('/logout', 'Auth::logout');          // logout
 // Mobile API routes
 $routes->post('api/login', 'Api\Auth::login');
 $routes->post('api/register', 'Api\Auth::register');
+$routes->get('api/stats', 'Api\Stats::index');
+$routes->get('api/user/profile', 'Api\User::profile');
+$routes->post('api/user/update', 'Api\User::updateProfile');
+$routes->get('api/diagnosis/history', 'Api\Diagnosis::history');
+$routes->post('api/logout', 'Api\Auth::logout');
+$routes->post('api/feedback', 'Api\Feedback::create');
+$routes->get('api/feedback', 'Api\Feedback::index');
+
 
 
 // Protected routes

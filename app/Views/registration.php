@@ -18,8 +18,8 @@
             <h3 class="text-center mb-5">Registration Form</h3>
             
             <!-- CI Form -->
-            <form action="<?= site_url('auth/create'); ?>" method="post">
-              
+            <form action="<?= site_url('registration'); ?>" method="post">
+            <?= csrf_field() ?>
               <div class="row">
                 <div class="col-md-6 mb-4">
                   <label for="firstName" class="form-label">First Name</label>
@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-md-6 mb-4">
                   <label for="phoneNumber" class="form-label">Phone Number</label>
-                  <input type="tel" name="phone" id="phoneNumber" class="form-control form-control-lg" required>
+                  <input type="tel" name="contact_number" id="phoneNumber" class="form-control form-control-lg" required>
                 </div>
               </div>
 
