@@ -3,7 +3,6 @@
 namespace App\Controllers\Api;
 
 use App\Controllers\BaseController;
-use App\Models\FeedbackModel;
 use CodeIgniter\API\ResponseTrait;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -16,110 +15,144 @@ class Feedback extends BaseController
 {
     use ResponseTrait;
 
-    private $key = "cacaodx1234567890"; // Same key as Auth controller
+    private $key = "cacaodx1234567890";
 
-    private function validateToken()
+    private function getUserFromToken()
     {
-        $header = $this->request->getHeaderLine('Authorization');
+        $authHeader = $this->request->getHeaderLine('Authorization');
         
-        if (empty($header)) {
+        if (!$authHeader || !preg_match('/Bearer\s+(.*)$/i', $authHeader, $matches)) {
             return null;
         }
 
-        // Remove 'Bearer ' prefix
-        $token = str_replace('Bearer ', '', $header);
-
         try {
+            $token = $matches[1];
             $decoded = JWT::decode($token, new Key($this->key, 'HS256'));
             return $decoded;
         } catch (\Exception $e) {
-            log_message('error', 'Token validation failed: ' . $e->getMessage());
+            log_message('error', 'Token decode error: ' . $e->getMessage());
             return null;
         }
     }
 
-    public function create()
+    // GET user's own feedbacks
+    public function user()
     {
-        // Validate token
-        $decoded = $this->validateToken();
+        $tokenData = $this->getUserFromToken();
         
-        if (!$decoded) {
-            return $this->failUnauthorized('Invalid or expired token');
+        if (!$tokenData) {
+            return $this->failUnauthorized('Invalid or missing token');
         }
 
-        $user_id = $decoded->uid;
-
-        // Get input data
-        $data = json_decode($this->request->getBody(), true);
-
-        // Validate input
-        if (empty($data['rating']) || $data['rating'] < 1 || $data['rating'] > 5) {
-            return $this->fail('Rating must be between 1 and 5', 400);
-        }
-
-        if (empty($data['comments']) || trim($data['comments']) === '') {
-            return $this->fail('Comments are required', 400);
-        }
-
-        // Prepare data for insertion
-        $feedbackData = [
-            'user_id' => $user_id,
-            'rating' => $data['rating'],
-            'comments' => trim($data['comments']),
-            'created_at' => date('Y-m-d H:i:s')
-        ];
-
+        $db = \Config\Database::connect();
+        
         try {
-            $feedbackModel = new FeedbackModel();
-            $feedback_id = $feedbackModel->insert($feedbackData);
-
-            if ($feedback_id === false) {
-                $errors = $feedbackModel->errors();
-                log_message('error', 'Feedback insert failed: ' . json_encode($errors));
-                return $this->fail('Failed to submit feedback: ' . json_encode($errors), 500);
-            }
-
-            return $this->respondCreated([
-                'message' => 'Feedback submitted successfully',
-                'data' => [
-                    'id' => $feedback_id,
-                    'user_id' => $user_id,
-                    'rating' => $data['rating'],
-                    'comments' => trim($data['comments'])
-                ]
+            $query = $db->query("
+                SELECT 
+                    id,
+                    rating,
+                    comments,
+                    created_at
+                FROM feedback
+                WHERE user_id = ?
+                ORDER BY created_at DESC
+            ", [$tokenData->uid]);
+            
+            $feedbacks = $query->getResultArray();
+            
+            return $this->respond([
+                'status' => 'success',
+                'data' => $feedbacks
             ]);
-
+            
         } catch (\Exception $e) {
-            log_message('error', 'Feedback submission exception: ' . $e->getMessage());
-            return $this->fail('Failed to submit feedback: ' . $e->getMessage(), 500);
+            log_message('error', 'Failed to fetch user feedbacks: ' . $e->getMessage());
+            return $this->fail('Failed to load feedbacks', 500);
         }
     }
 
-    public function index()
+    // POST create feedback
+    public function create()
     {
-        // Validate token
-        $decoded = $this->validateToken();
+        $tokenData = $this->getUserFromToken();
         
-        if (!$decoded) {
-            return $this->failUnauthorized('Invalid or expired token');
+        if (!$tokenData) {
+            return $this->failUnauthorized('Invalid or missing token');
         }
 
-        $user_id = $decoded->uid;
+        $data = json_decode($this->request->getBody(), true);
 
+        // Validate input
+        if (empty($data['rating'])) {
+            return $this->fail('Rating is required', 400);
+        }
+
+        if ($data['rating'] < 1 || $data['rating'] > 5) {
+            return $this->fail('Rating must be between 1 and 5', 400);
+        }
+
+        $db = \Config\Database::connect();
+        
         try {
-            $feedbackModel = new FeedbackModel();
-            $feedbacks = $feedbackModel->where('user_id', $user_id)
-                                       ->orderBy('created_at', 'DESC')
-                                       ->findAll();
+            $insertData = [
+                'user_id' => $tokenData->uid,
+                'rating' => $data['rating'],
+                'comments' => $data['comments'] ?? null,
+                'created_at' => date('Y-m-d H:i:s')
+            ];
 
+            $query = $db->table('feedback')->insert($insertData);
+            
+            if ($query) {
+                return $this->respondCreated([
+                    'status' => 'success',
+                    'message' => 'Feedback submitted successfully'
+                ]);
+            } else {
+                return $this->fail('Failed to submit feedback', 500);
+            }
+            
+        } catch (\Exception $e) {
+            log_message('error', 'Failed to create feedback: ' . $e->getMessage());
+            return $this->fail('Failed to submit feedback', 500);
+        }
+    }
+
+    // GET all feedbacks (admin only - optional)
+    public function index()
+    {
+        $tokenData = $this->getUserFromToken();
+        
+        if (!$tokenData) {
+            return $this->failUnauthorized('Invalid or missing token');
+        }
+
+        $db = \Config\Database::connect();
+        
+        try {
+            $query = $db->query("
+                SELECT 
+                    f.id,
+                    f.rating,
+                    f.comments,
+                    f.created_at,
+                    CONCAT(u.first_name, ' ', u.last_name) as user_name,
+                    u.email
+                FROM feedback f
+                JOIN users u ON f.user_id = u.id
+                ORDER BY f.created_at DESC
+            ");
+            
+            $feedbacks = $query->getResultArray();
+            
             return $this->respond([
-                'message' => 'Feedback retrieved successfully',
+                'status' => 'success',
                 'data' => $feedbacks
             ]);
-
+            
         } catch (\Exception $e) {
-            log_message('error', 'Feedback retrieval exception: ' . $e->getMessage());
-            return $this->fail('Failed to retrieve feedback: ' . $e->getMessage(), 500);
+            log_message('error', 'Failed to fetch feedbacks: ' . $e->getMessage());
+            return $this->fail('Failed to load feedbacks', 500);
         }
     }
 }

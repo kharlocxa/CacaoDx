@@ -64,7 +64,7 @@
               <th>ID</th>
               <th>Full Name</th>
               <th>Email</th>
-              <th>Role</th>
+              <!-- <th>Role</th> -->
               <th>Status</th>
               <th>Actions</th>
             </tr>
@@ -76,7 +76,7 @@
                 <td><?= esc($user['id']) ?></td>
                 <td><?= esc($user['first_name'] . ' ' . $user['last_name']) ?></td>
                 <td><?= esc($user['email']) ?></td>
-                <td><?= esc(ucfirst($user['role'])) ?></td>
+                <!-- <td><?= esc(ucfirst($user['role'])) ?></td> -->
                 <td>
                   <span class="status <?= esc($user['status']) ?>">
                     <?= esc(ucfirst($user['status'])) ?>

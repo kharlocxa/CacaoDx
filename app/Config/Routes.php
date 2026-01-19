@@ -9,28 +9,66 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 // Registration
-$routes->get('/registration', 'Registration::index');   // show form
-$routes->post('/registration', 'Registration::store'); // handle submission
+$routes->get('/registration', 'Registration::index');
+$routes->post('/registration', 'Registration::store');
 
 // Login / Auth
-$routes->get('/login', 'Auth::login');             // show form
-$routes->post('/login', 'Auth::authenticate');    // submit login
-$routes->get('/logout', 'Auth::logout');          // logout
+$routes->get('/login', 'Auth::login');
+$routes->post('/login', 'Auth::authenticate');
+$routes->get('/logout', 'Auth::logout');
 
-// Mobile API routes
+// Mobile API routes (NO AUTH REQUIRED)
 $routes->post('api/login', 'Api\Auth::login');
 $routes->post('api/register', 'Api\Auth::register');
-$routes->get('api/stats', 'Api\Stats::index');
-$routes->get('api/user/profile', 'Api\User::profile');
-$routes->post('api/user/update', 'Api\User::updateProfile');
-$routes->get('api/diagnosis/history', 'Api\Diagnosis::history');
-$routes->post('api/logout', 'Api\Auth::logout');
-$routes->post('api/feedback', 'Api\Feedback::create');
-$routes->get('api/feedback', 'Api\Feedback::index');
 
+// Test disease routes WITHOUT auth filter (TEMPORARY - for debugging)
+$routes->get('api/diseases', 'Api\Diseases::index');
+$routes->get('api/diseases/(:num)', 'Api\Diseases::show/$1');
 
+// Test route without auth filter first
+$routes->get('api/diseases/test', function() {
+    return "Diseases route is working!";
+});
 
-// Protected routes
+// Mobile API routes (AUTH REQUIRED - using filter)
+$routes->group('api', ['filter' => 'apiauth'], function($routes) {
+    // Stats
+    $routes->get('stats', 'Api\Stats::index');
+
+    // Pests
+    $routes->get('pests', 'Api\Pests::index');           
+    $routes->get('pests/(:num)', 'Api\Pests::show/$1');  
+
+    // Diseases (NEW)
+    $routes->get('diseases', 'Api\Diseases::index');
+    $routes->get('diseases/(:num)', 'Api\Diseases::show/$1');
+
+    // User/Profile
+    $routes->get('user/profile', 'Api\Profile::index');
+    $routes->post('user/profile/change-password', 'Api\Profile::changePassword');
+    $routes->post('user/update', 'Api\User::updateProfile');
+    
+    // Diagnosis
+    $routes->post('diagnosis/upload', 'Api\Diagnosis::upload');
+    $routes->get('diagnosis/history', 'Api\Diagnosis::history');
+    
+    // Feedback
+    $routes->post('feedback', 'Api\Feedback::create');
+    $routes->get('feedback', 'Api\Feedback::index');
+    $routes->get('feedback/user', 'Api\Feedback::user');
+    
+    // Logout
+    $routes->post('logout', 'Api\Auth::logout');
+});
+
+// Prediction API (if you're still using this)
+$routes->group('api/prediction', ['namespace' => 'App\Controllers\API'], function($routes) {
+    $routes->post('save', 'Prediction::save');
+    $routes->get('disease/(:num)', 'Prediction::get_disease/$1');
+    $routes->get('diseases', 'Prediction::get_all_diseases');
+});
+
+// Protected web routes (Admin Dashboard)
 $routes->group('', ['filter' => 'auth'], function($routes) {
     $routes->get('dashboard', 'Dashboard::index');
     
@@ -44,14 +82,13 @@ $routes->group('', ['filter' => 'auth'], function($routes) {
     
     // Disease
     $routes->get('/disease', 'Disease::index');
-    $routes->post('disease/store', 'Disease::store'); // 👈 handles form submission
-
+    $routes->post('disease/store', 'Disease::store');
 
     // Images
-    $routes->get('images', 'Images::index');          // Upload form page
-    $routes->post('images/upload', 'Images::upload'); // Handle upload
-    $routes->get('images/list', 'Images::list');      // Show uploaded list
+    $routes->get('images', 'Images::index');
+    $routes->post('images/upload', 'Images::upload');
+    $routes->get('images/list', 'Images::list');
 
-    // Diagnosis (View Only)
-    $routes->get('diagnosis', 'Diagnosis::index');           // list all
+    // Diagnosis (View Only - Web Dashboard)
+    $routes->get('diagnosis', 'Diagnosis::index');
 });

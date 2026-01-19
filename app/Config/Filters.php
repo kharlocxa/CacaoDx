@@ -29,6 +29,7 @@ class Filters extends BaseFilters
         'toolbar'       => DebugToolbar::class,
         'honeypot'      => Honeypot::class,
         'auth'          => \App\Filters\AuthCheck::class,
+        'apiauth'       => \App\Filters\ApiAuth::class,  // ← ADD THIS LINE
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'cors'          => Cors::class,

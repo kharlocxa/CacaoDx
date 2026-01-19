@@ -17,7 +17,6 @@ class UserModel extends Model
         'user_type_id',
         'contact_number',
         'registered_at',
-        'role',
         'status',
         'farm_location'
     ];
